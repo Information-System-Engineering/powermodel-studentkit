@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: powermodel-python
+  namespace: monitoring
+  labels: {app: powermodel-python}
+spec:
+  selector: {app: powermodel-python}
+  ports: [{name: metrics, port: 9270, targetPort: metrics}]

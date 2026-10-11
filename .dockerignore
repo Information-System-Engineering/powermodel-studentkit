@@ -1,0 +1,7 @@
+# examples/go/Dockerfile builds from the repo root. Send it only what it
+# reads, not the snapshots.
+*
+!powermodel-base
+!examples/go
+examples/go/out
+examples/go/bin

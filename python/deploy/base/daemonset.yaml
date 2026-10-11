@@ -1,0 +1,32 @@
+# One pod per role=sut node, serving powermodel_* on :9270 for that node.
+# Configured through POWERMODEL_* env vars; the overlays set the hardware.
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: powermodel-python
+  namespace: monitoring
+  labels: {app: powermodel-python}
+spec:
+  selector: {matchLabels: {app: powermodel-python}}
+  template:
+    metadata:
+      labels: {app: powermodel-python}
+    spec:
+      # Kubernetes would otherwise inject <SERVICE>_PORT variables for every
+      # Service in the namespace.
+      enableServiceLinks: false
+      nodeSelector: {role: sut}
+      containers:
+        - name: powermodel
+          image: powermodel-python:dev
+          env:
+            - name: POWERMODEL_NODE
+              valueFrom: {fieldRef: {fieldPath: spec.nodeName}}
+            - {name: POWERMODEL_PROMETHEUS, value: "http://kube-prometheus-stack-prometheus.monitoring:9090"}
+          ports: [{name: metrics, containerPort: 9270}]
+          readinessProbe:
+            httpGet: {path: /metrics, port: metrics}
+            periodSeconds: 10
+          resources:
+            requests: {cpu: 25m, memory: 64Mi}
+            limits: {cpu: 500m, memory: 256Mi}

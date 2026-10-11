@@ -1,0 +1,25 @@
+{
+	"ulid": "01M4FS6EHXV7EBWJ566B2BP500",
+	"minTime": 1791473879042,
+	"maxTime": 1791476627187,
+	"stats": {
+		"numSamples": 35212037,
+		"numFloatSamples": 35212037,
+		"numSeries": 65905,
+		"numChunks": 323795
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01M4FS6EHXV7EBWJ566B2BP500"
+		],
+		"parents": [
+			{
+				"ulid": "01M4E57XRMCDZ9B0B6SMD1D3MY",
+				"minTime": 1791473879042,
+				"maxTime": 1791476627187
+			}
+		]
+	},
+	"version": 1
+}

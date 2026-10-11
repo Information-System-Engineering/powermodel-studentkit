@@ -1,0 +1,25 @@
+{
+	"ulid": "01M4FS6T55MEZA1AVTSEPH96JX",
+	"minTime": 1791476631735,
+	"maxTime": 1791477926408,
+	"stats": {
+		"numSamples": 16917966,
+		"numFloatSamples": 16917966,
+		"numSeries": 68372,
+		"numChunks": 139178
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01M4FS6T55MEZA1AVTSEPH96JX"
+		],
+		"parents": [
+			{
+				"ulid": "01M4E6FJGTK30VZNEYAFVSGVAP",
+				"minTime": 1791476631735,
+				"maxTime": 1791477926408
+			}
+		]
+	},
+	"version": 1
+}

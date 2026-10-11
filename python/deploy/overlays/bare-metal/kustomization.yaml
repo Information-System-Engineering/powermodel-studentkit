@@ -1,0 +1,18 @@
+# For a cluster with a real power source. Set the two hardware values to the
+# ones in the snapshot's hw.env, and the Prometheus URL if it differs.
+# Nodes to model need the label role=sut.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources: [../../base]
+patches:
+  - target: {kind: DaemonSet}
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/1/value
+        value: http://kube-prometheus-stack-prometheus.monitoring:9090
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value: {name: POWERMODEL_CPU_MODEL, value: SET-ME}
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value: {name: POWERMODEL_MACHINE_TYPE, value: SET-ME}
